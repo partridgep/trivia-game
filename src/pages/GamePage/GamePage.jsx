@@ -9,6 +9,11 @@ import triviaData from '../../assets/Apprentice_TandemFor400_Data.json';
 
 function GamePage(props) {
 
+    // state of game (lost yet or not)
+    const [gameStatus, updateGameStatus] = useState({
+        lost: false
+    })
+
     // state for current question and answers
     const [currentQandA, updateQuestion] = useState({
         question: "",
@@ -26,15 +31,23 @@ function GamePage(props) {
         count: 0
     })
 
+    function getTriviaIdx() {
+        return Math.floor(Math.random()*(triviaData.length-1)+1);
+    }
+
     // need funcion to feed new question into question component
     function getNewQuestion() {
         console.log(triviaData)
-        // get trivia JSON data
-        let triviaQandA = triviaData[Math.floor(Math.random()*(triviaData.length-1)+1)];
+        // get random question idx
+        let triviaIdx = getTriviaIdx();
+        // get new idx if question has already been asked
+        while (alreadyAsked.askedQuestions.includes(triviaData[triviaIdx].question)) triviaIdx = getTriviaIdx();
+        // grab JSON data for new question
+        let triviaQandA = triviaData[triviaIdx];
         let question = triviaQandA.question;
         let incorrect = triviaQandA.incorrect;
         let correct = triviaQandA.correct;
-        // update the question in tate
+        // update the question in state
         updateQuestion({question, incorrect, correct});
         // mark this question as already asked so it will not get repeated
         console.log(alreadyAsked);
@@ -46,6 +59,14 @@ function GamePage(props) {
         updateNumQuestions({count})
     }
 
+    function checkIfCorrect(answer, currentQandA) {
+        let correct = false;
+        if (answer === currentQandA.correct) correct = true;
+        if (correct === true) getNewQuestion();
+        else updateGameStatus({lost: true});
+    }
+
+    // initialize game and get new question on load
     useEffect(() => {
         getNewQuestion();
     }, []
@@ -54,15 +75,25 @@ function GamePage(props) {
 
     return (
         <div className='GamePage'>
-            <h1>Round {numQuestions.count < 11 ? 1 : 2}</h1>
-            <h1>Question {numQuestions.count}</h1>
-            <Question 
-                question={currentQandA.question}
-            />
-            <AnswerSet
-                incorrect={currentQandA.incorrect}
-                correct={currentQandA.correct}
-            />
+            { !gameStatus.lost ? 
+            <div>
+                <h1>Round {numQuestions.count < 11 ? 1 : 2}</h1>
+                <h1>Question {numQuestions.count}</h1>
+                <Question 
+                    question={currentQandA.question}
+                />
+                <AnswerSet
+                    currentQandA={currentQandA}
+                    incorrect={currentQandA.incorrect}
+                    correct={currentQandA.correct}
+                    checkIfCorrect={checkIfCorrect}
+                />
+            </div>
+            :
+            <div>
+                <h1>You lost!</h1>
+            </div>
+            }
         </div>
     )
 }
