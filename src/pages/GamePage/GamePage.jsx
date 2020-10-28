@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './GamePage.css';
 
 import Question from '../../components/Question/Question';
+import AnswerSet from '../../components/AnswerSet/AnswerSet';
 
 import triviaData from '../../assets/Apprentice_TandemFor400_Data.json';
 
@@ -29,7 +30,7 @@ function GamePage(props) {
     function getNewQuestion() {
         console.log(triviaData)
         // get trivia JSON data
-        let triviaQandA = triviaData[0];
+        let triviaQandA = triviaData[Math.floor(Math.random()*(triviaData.length-1)+1)];
         let question = triviaQandA.question;
         let incorrect = triviaQandA.incorrect;
         let correct = triviaQandA.correct;
@@ -46,7 +47,6 @@ function GamePage(props) {
     }
 
     useEffect(() => {
-
         getNewQuestion();
     }, []
     )
@@ -54,11 +54,15 @@ function GamePage(props) {
 
     return (
         <div className='GamePage'>
-            <h1>Question 1</h1>
+            <h1>Round {numQuestions.count < 11 ? 1 : 2}</h1>
+            <h1>Question {numQuestions.count}</h1>
             <Question 
                 question={currentQandA.question}
             />
-
+            <AnswerSet
+                incorrect={currentQandA.incorrect}
+                correct={currentQandA.correct}
+            />
         </div>
     )
 }
