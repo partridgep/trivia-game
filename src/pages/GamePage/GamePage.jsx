@@ -31,13 +31,12 @@ function GamePage(props) {
         count: 0
     })
 
+    // randomly get idx for trivia question
     function getTriviaIdx() {
         return Math.floor(Math.random()*(triviaData.length-1)+1);
     }
 
-    // need funcion to feed new question into question component
     function getNewQuestion() {
-        console.log(triviaData)
         // get random question idx
         let triviaIdx = getTriviaIdx();
         // get new idx if question has already been asked
@@ -50,9 +49,7 @@ function GamePage(props) {
         // update the question in state
         updateQuestion({question, incorrect, correct});
         // mark this question as already asked so it will not get repeated
-        console.log(alreadyAsked);
         let askedQuestions = [...alreadyAsked.askedQuestions, question];
-        console.log(askedQuestions)
         markAsAsked({askedQuestions});
         // increment question count by one
         let count = numQuestions.count + 1;
@@ -66,11 +63,17 @@ function GamePage(props) {
         else updateGameStatus({lost: true});
     }
 
+    function resetGame() {
+        updateGameStatus({lost: false});
+        markAsAsked({askedQuestions: []});
+        updateNumQuestions({count: 0});
+        getNewQuestion();
+    }
+
     // initialize game and get new question on load
     useEffect(() => {
         getNewQuestion();
-    }, []
-    )
+    }, [])
 
 
     return (
@@ -92,6 +95,7 @@ function GamePage(props) {
             :
             <div>
                 <h1>You lost!</h1>
+                <button onClick={() => resetGame()}>Play Again</button>
             </div>
             }
         </div>
