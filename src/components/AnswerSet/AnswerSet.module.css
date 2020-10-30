@@ -1,0 +1,20 @@
+.AnswerSet {
+    display: flex;
+    flex-wrap: wrap;
+    width: 580px;
+
+}
+
+.answer {
+    margin: 20px;
+    padding: 20px;
+    width: 250px;
+    height: 120px;
+    cursor: pointer;
+}
+
+.answer:disabled {
+    background: white;
+    color: rgb(94, 94, 94);
+    cursor: auto;
+}

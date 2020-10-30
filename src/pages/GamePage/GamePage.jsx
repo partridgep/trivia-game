@@ -15,7 +15,8 @@ class GamePage extends Component {
         triviaQandA: {},
         askedQuestions: [],
         count: 0,
-        showNexButton: false
+        showNexButton: false,
+        chosenAnswer: ''
     }
 
     async componentDidMount() {
@@ -56,7 +57,7 @@ class GamePage extends Component {
             this.setState({showNexButton: true});
         }
         else this.setState({lost: true});
-        this.setState({disableAnswerBtns: true})
+        this.setState({disableAnswerBtns: true, chosenAnswer: answer})
     }
 
     resetGame = async () => {
@@ -78,22 +79,11 @@ class GamePage extends Component {
         return possibleAnswers;
     } 
 
-    // initialize game and get new question on load
-    // useEffect(() => {
-    //     resetGame();
-    // }, [])
-
-    // useEffect(() => {
-    //     getNewQuestion();
-    // }, [gameState.readyToPlay])
-
-
     render() {
         return (
-           <div className='GamePage'>
-               <div>
-                   <h1>Round {this.state.count < 11 ? 1 : 2}</h1>
-                   <h1>Question {this.state.count}</h1>
+           <div className='GamePage flex-ctr'>
+                   <h1 className='GamePage-stat'>Round {this.state.count < 11 ? 1 : 2}</h1>
+                   <h1 className='GamePage-stat'>Question {this.state.count}</h1>
                    <Question 
                        question={this.state.triviaQandA.question}
                    />
@@ -102,13 +92,19 @@ class GamePage extends Component {
                        randomlyOrderedAnswers={this.state.randomlyOrderedAnswers}
                        checkIfCorrect={this.checkIfCorrect}
                        disableAnswerBtns={this.state.disableAnswerBtns}
+                       chosenAnswer={this.state.chosenAnswer}
                    />
-               </div>
-               {this.state.showNexButton && <button onClick={() => this.getNewQuestion()}>Next Question</button>}
+               {this.state.showNexButton && 
+                    <button 
+                        className='btn GamePage-proceed'
+                        onClick={() => this.getNewQuestion()}
+                    >
+                        Next Question
+                    </button>}
                {this.state.lost && 
                     <div>
-                        <h1>You lost!</h1>
-                        <button onClick={() => this.resetGame()}>Play Again</button>
+                        <h1 className='GamePage-stat GamePage-lost'>You lost!</h1>
+                        <button className='btn' onClick={() => this.resetGame()}>Play Again</button>
                     </div>
                 }
            </div>

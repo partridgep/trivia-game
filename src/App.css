@@ -18,22 +18,33 @@
 
 .btn {
   font-family: 'Share', cursive;
-  font-size: 25px;
+  font-size: 28px;
   text-decoration: none;
-  padding: .5rem;
-  background: linear-gradient(#fcea8f, #dcabf3);
-  border-radius: 4px;
+  padding: 10px;
+  background: linear-gradient(#ffffff, #eccafc);
+  border-radius: 8px;
   border: none;
   transition: 0.2s all;
+  cursor: pointer;
 }
 
-.btn:hover {
+.btn:hover, .btn:focus {
   background: linear-gradient(#ffe252, #c343ff);
-  border: 1px solid white;
+  padding: 10px 11px;
+}
+
+.btn:active {
+  background: linear-gradient(#9500da, #e0bb00);
+  padding: 10px 11px;
 }
 
 .btn a {
   text-decoration: none;
+  color: rgb(28, 88, 112);
+}
+
+.btn:hover a, .btn:focus a  {
+  color: rgb(255, 255, 255);
 }
 
 

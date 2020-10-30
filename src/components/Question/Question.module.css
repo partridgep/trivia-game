@@ -1,0 +1,8 @@
+.question {
+    font-family: 'Share', cursive;
+    margin-top: 5vh;
+    color: white;
+    padding: 40px 20px;
+    border-radius: 7px;
+    background: linear-gradient(rgb(74, 4, 92), rgba(0, 0, 0, 0.8));
+}
