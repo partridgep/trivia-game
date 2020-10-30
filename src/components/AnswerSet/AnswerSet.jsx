@@ -9,10 +9,10 @@ function randomlyOrderAnswers(incorrect, correct) {
     return possibleAnswers;
 } 
 
-const AnswerSet = ({ incorrect, correct, checkIfCorrect, currentQandA }) => (
+const AnswerSet = ({ currentQandA, checkIfCorrect }) => (
     <div>
-        {randomlyOrderAnswers(incorrect, correct).map(answer => 
-            <button onClick={() => checkIfCorrect(answer, currentQandA)}>{answer}</button>)
+        {currentQandA.incorrect && randomlyOrderAnswers(currentQandA.incorrect, currentQandA.correct).map((answer, idx) => 
+            <button key={idx} onClick={() => checkIfCorrect(answer, currentQandA)}>{answer}</button>)
         }
     </div>
 )
