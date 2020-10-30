@@ -14,7 +14,8 @@ class GamePage extends Component {
         lost: false,
         triviaQandA: {},
         askedQuestions: [],
-        count: 0
+        count: 0,
+        showNexButton: false
     }
 
     async componentDidMount() {
@@ -27,6 +28,8 @@ class GamePage extends Component {
     }
 
     getNewQuestion = () => {
+        // remove "Next Question" button
+        this.setState({showNexButton: false, disableAnswerBtns: false});
         // get random question idx
         let triviaIdx = this.getTriviaIdx();
         // get new idx if question has already been asked
@@ -35,6 +38,8 @@ class GamePage extends Component {
         let triviaQandA = triviaData[triviaIdx];
         // update the question in state
         this.setState({triviaQandA});
+        let randomlyOrderedAnswers = this.randomlyOrderAnswers(triviaQandA.incorrect, triviaQandA.correct);
+        this.setState({randomlyOrderedAnswers});
         // mark this question as already asked so it will not get repeated
         let askedQuestions = [...this.state.askedQuestions, triviaQandA.question];
         this.setState({askedQuestions});
@@ -47,23 +52,31 @@ class GamePage extends Component {
         let correct = false;
         console.log(currentQandA);
         if (answer === currentQandA.correct) correct = true;
-        if (correct === true) this.getNewQuestion();
+        if (correct === true) {
+            this.setState({showNexButton: true});
+        }
         else this.setState({lost: true});
+        this.setState({disableAnswerBtns: true})
     }
 
     resetGame = async () => {
         await this.setState({
             lost: false,
             triviaQandA: {},
-            question: "",
-            incorrect: [],
-            correct: "",
             askedQuestions: [],
             count: 0,
-            readyToPlay: true
+            showNexButton: false
         });
         this.getNewQuestion();
     }
+
+    randomlyOrderAnswers(incorrect, correct) {
+        // copy array of incorrect answers
+        let possibleAnswers = [...incorrect];
+        // insert correct answer at random index
+        possibleAnswers.splice(Math.floor(Math.random()*(incorrect.length-0+1)), 0, correct);
+        return possibleAnswers;
+    } 
 
     // initialize game and get new question on load
     // useEffect(() => {
@@ -78,7 +91,6 @@ class GamePage extends Component {
     render() {
         return (
            <div className='GamePage'>
-               { !this.state.lost ? 
                <div>
                    <h1>Round {this.state.count < 11 ? 1 : 2}</h1>
                    <h1>Question {this.state.count}</h1>
@@ -87,15 +99,18 @@ class GamePage extends Component {
                    />
                    <AnswerSet
                        currentQandA={this.state.triviaQandA}
+                       randomlyOrderedAnswers={this.state.randomlyOrderedAnswers}
                        checkIfCorrect={this.checkIfCorrect}
+                       disableAnswerBtns={this.state.disableAnswerBtns}
                    />
                </div>
-               :
-               <div>
-                   <h1>You lost!</h1>
-                   <button onClick={() => this.resetGame()}>Play Again</button>
-               </div>
-               }
+               {this.state.showNexButton && <button onClick={() => this.getNewQuestion()}>Next Question</button>}
+               {this.state.lost && 
+                    <div>
+                        <h1>You lost!</h1>
+                        <button onClick={() => this.resetGame()}>Play Again</button>
+                    </div>
+                }
            </div>
        )
     }
