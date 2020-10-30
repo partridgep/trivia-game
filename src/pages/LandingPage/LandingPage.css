@@ -1,0 +1,34 @@
+.LandingPage {
+    min-height: 100vh;
+}
+
+.LandingPage-title {
+    font-family: 'Pacifico', cursive;
+    font-weight: 100;
+    font-size: 5.6rem;
+    text-align: center;
+    line-height: 1;
+    color: #c6e2ff;
+    animation: neon .08s ease-in-out infinite alternate;
+}
+
+@keyframes neon {
+    from {
+      text-shadow:
+      0 0 6px rgba(222, 202, 228, 0.92),
+      0 0 30px rgba(225, 202, 228, 0.34),
+      0 0 12px rgba(193, 30, 242, 0.52),
+      0 0 21px rgba(182, 30, 242, 0.92),
+      0 0 34px rgba(182, 30, 242, 0.78),
+      0 0 54px rgba(235, 30, 242, 0.92);
+    }
+    to {
+      text-shadow:
+      0 0 6px rgba(226, 202, 228, 0.98),
+      0 0 30px rgba(224, 202, 228, 0.42),
+      0 0 12px rgba(242, 30, 224, 0.58),
+      0 0 22px rgba(224, 30, 242, 0.84),
+      0 0 38px rgba(242, 30, 224, 0.88),
+      0 0 60px rgb(242, 30, 231);
+    }
+  }
