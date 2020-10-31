@@ -9,13 +9,15 @@ import Countdown from '../../components/Countdown/Countdown';
 import triviaData from '../../assets/Apprentice_TandemFor400_Data.json';
 import WonPopUp from '../../components/WonPopUp/WonPopUp';
 import LostPopUp from '../../components/LostPopUp/LostPopUp';
-
-import highScoresService from '../../utils/highScoresService';
+import NamePrompt from '../../components/NamePrompt/NamePrompt';
 
 class GamePage extends Component {
 
     // state of game 
-    state = { triviaQandA: {} }
+    state = { 
+        triviaQandA: {},
+        addingScore: false
+     }
 
     // upon load, initialize game in state
     async componentDidMount() {
@@ -109,11 +111,8 @@ class GamePage extends Component {
         this.setState({ questionTimer: --this.state.questionTimer });
     }
 
-    // add score to leaderboard
-    handleAddScore = async () => {
-        const scores = await highScoresService.addScore({numQuestions: this.state.count, name: 'Paul', seconds: this.state.gameTimer});
-        console.log(scores);
-        this.setState({ scores });
+    handleAskToAddScore = () => {
+        this.setState({ addingScore: true });
     }
 
     resetGame = async () => {
@@ -169,10 +168,16 @@ class GamePage extends Component {
                {this.state.lost && 
                     <LostPopUp resetGame={this.resetGame} />
                 }
-               {this.state.won && 
+               {this.state.won && !this.state.addingScore &&
                     <WonPopUp 
                         resetGame={this.resetGame}
-                        handleAddScore={this.handleAddScore}
+                        handleAskToAddScore={this.handleAskToAddScore}
+                    />
+                }
+                {this.state.addingScore && 
+                    <NamePrompt 
+                        numQuestions={this.state.numQuestions}
+                        gameTimer={this.state.gameTimer}
                     />
                 }
            </div>

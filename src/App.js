@@ -5,6 +5,7 @@ import { Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage/LandingPage';
 import GamePage from './pages/GamePage/GamePage';
+import LeaderBoard from './pages/LeaderBoard/LeaderBoard';
 
 class App extends Component {
 
@@ -17,6 +18,9 @@ class App extends Component {
           }/>
           <Route exact path="/play" render={ props =>
             <GamePage {...props} />
+          }/>
+          <Route exact path="/leaderboard" render={ props =>
+            <LeaderBoard {...props} />
           }/>
         </div>
       </Router>
