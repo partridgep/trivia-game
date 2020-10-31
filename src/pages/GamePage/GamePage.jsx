@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { Component } from 'react';
 // import {Link} from 'react-router-dom';
 import './GamePage.css';
 
@@ -10,17 +10,12 @@ import triviaData from '../../assets/Apprentice_TandemFor400_Data.json';
 import WonPopUp from '../../components/WonPopUp/WonPopUp';
 import LostPopUp from '../../components/LostPopUp/LostPopUp';
 
+import highScoresService from '../../utils/highScoresService';
+
 class GamePage extends Component {
 
     // state of game 
-    state = {
-        lost: false,
-        triviaQandA: {},
-        askedQuestions: [],
-        count: 0,
-        showNexButton: false,
-        chosenAnswer: ''
-    }
+    state = { triviaQandA: {} }
 
     // upon load, initialize game in state
     async componentDidMount() {
@@ -112,7 +107,14 @@ class GamePage extends Component {
     // increment question timer
     handleUpdateQuestionTimer = () => {
         this.setState({ questionTimer: --this.state.questionTimer });
-      }
+    }
+
+    // add score to leaderboard
+    handleAddScore = async () => {
+        const scores = await highScoresService.addScore({numQuestions: this.state.count, name: 'Paul', seconds: this.state.gameTimer});
+        console.log(scores);
+        this.setState({ scores });
+    }
 
     resetGame = async () => {
         await this.setState({
@@ -168,7 +170,10 @@ class GamePage extends Component {
                     <LostPopUp resetGame={this.resetGame} />
                 }
                {this.state.won && 
-                    <WonPopUp resetGame={this.resetGame} />
+                    <WonPopUp 
+                        resetGame={this.resetGame}
+                        handleAddScore={this.handleAddScore}
+                    />
                 }
            </div>
        )
