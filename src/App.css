@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
   min-height: 100vh;
@@ -7,6 +11,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-color: #141414;
+  
 }
 
 .flex-ctr {
@@ -21,6 +26,7 @@
   font-size: 28px;
   text-decoration: none;
   padding: 10px;
+  margin: .5rem;
   background: linear-gradient(#ffffff, #eccafc);
   border-radius: 8px;
   border: none;
@@ -31,6 +37,7 @@
 .btn:hover, .btn:focus {
   background: linear-gradient(#ffe252, #c343ff);
   padding: 10px 11px;
+  outline: none;
 }
 
 .btn:active {

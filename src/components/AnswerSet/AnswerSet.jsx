@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './AnswerSet.module.css';
 
-const AnswerSet = ({ currentQandA, checkIfCorrect, randomlyOrderedAnswers, disableAnswerBtns, chosenAnswer }) => (
+const AnswerSet = ({ currentQandA, checkIfCorrect, randomlyOrderedAnswers, disableAnswerBtns, chosenAnswer, questionTimer }) => (
     <div className={styles.AnswerSet}>
         {randomlyOrderedAnswers && randomlyOrderedAnswers.map((answer, idx) => 
             <button 
                 className={['btn', `${styles.answer}`].join(' ')} 
                 style={{
-                    background: (disableAnswerBtns === true && answer === currentQandA.correct) ? 
+                    background: (disableAnswerBtns === true && answer === currentQandA.correct && questionTimer > 0) ? 
                     "rgb(55, 193, 69)"
                     :
                     (disableAnswerBtns === true && chosenAnswer === answer && answer !== currentQandA.correct) && 

@@ -7,6 +7,8 @@ import AnswerSet from '../../components/AnswerSet/AnswerSet';
 import Countdown from '../../components/Countdown/Countdown';
 
 import triviaData from '../../assets/Apprentice_TandemFor400_Data.json';
+import WonPopUp from '../../components/WonPopUp/WonPopUp';
+import LostPopUp from '../../components/LostPopUp/LostPopUp';
 
 class GamePage extends Component {
 
@@ -67,12 +69,17 @@ class GamePage extends Component {
         // compare selected answer to the question's correct answer
         // change correct boolean to true if it matches
         if (answer === currentQandA.correct) correct = true;
-        // show "Next Question" button if correct boolean is true
+        // if correct boolean is set to true
         if (correct === true) {
-            this.setState({showNexButton: true});
+            // tell player they've won if they answered all questions
+            if (this.state.count === 20) {
+                this.setState({won: true, isGameTiming: false});
+            }
+            // otherwise show "Next Question" button
+            else this.setState({showNexButton: true});
         }
         // else set lost boolean to true
-        else this.setState({lost: true});
+        else this.setState({lost: true, isQuestionTiming: false, isGameTiming: false});
         // in any case, disable the answer buttons
         // so the user can't change their answer
         // and commit the chosen answer to state
@@ -80,15 +87,26 @@ class GamePage extends Component {
         this.setState({disableAnswerBtns: true, chosenAnswer: answer})
     }
 
-
+    // every second, call methods to update their timers
     handleTick = () => {
-        if (this.state.isGameTiming) this.handleUpdateGameTimer();
-        if (this.state.isQuestionTiming) this.handleUpdateQuestionTimer();
+        // increment game timer by 1
+        // and decrease question timer by 1
+        if (this.state.questionTimer !== 0) {
+            if (this.state.isGameTiming) this.handleUpdateGameTimer();
+            if (this.state.isQuestionTiming) this.handleUpdateQuestionTimer();
+        }
+        else this.setState({isGameTiming: false, isQuestionTiming: false});
       }
 
     // increment game timer
     handleUpdateGameTimer = () => {
-        this.setState({ gameTimer: ++this.state.gameTimer });
+        // forfeit game if question timer is down to 0
+        if (this.state.questionTimer === 1) {
+            this.setState({ gameTimer: ++this.state.gameTimer, lost: true, disableAnswerBtns: true });
+        }
+        else {
+            this.setState({ gameTimer: ++this.state.gameTimer });
+        }
       }
 
     // increment question timer
@@ -96,11 +114,10 @@ class GamePage extends Component {
         this.setState({ questionTimer: --this.state.questionTimer });
       }
 
-    
-
     resetGame = async () => {
         await this.setState({
             lost: false,
+            won: false,
             triviaQandA: {},
             askedQuestions: [],
             count: 0,
@@ -129,7 +146,6 @@ class GamePage extends Component {
                     />
                    <h1 className='GamePage-stat'>Round {this.state.count < 11 ? 1 : 2}</h1>
                    <h1 className='GamePage-stat'>Question {this.state.count}</h1>
-
                    <Question 
                        question={this.state.triviaQandA.question}
                    />
@@ -139,6 +155,7 @@ class GamePage extends Component {
                        checkIfCorrect={this.checkIfCorrect}
                        disableAnswerBtns={this.state.disableAnswerBtns}
                        chosenAnswer={this.state.chosenAnswer}
+                       questionTimer={this.state.questionTimer}
                    />
                {this.state.showNexButton && 
                     <button 
@@ -148,10 +165,10 @@ class GamePage extends Component {
                         Next Question
                     </button>}
                {this.state.lost && 
-                    <div>
-                        <h1 className='GamePage-stat GamePage-lost'>You lost!</h1>
-                        <button className='btn' onClick={() => this.resetGame()}>Play Again</button>
-                    </div>
+                    <LostPopUp resetGame={this.resetGame} />
+                }
+               {this.state.won && 
+                    <WonPopUp resetGame={this.resetGame} />
                 }
            </div>
        )

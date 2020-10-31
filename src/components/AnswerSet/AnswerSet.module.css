@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 580px;
-
+    justify-content: space-evenly;
 }
 
 .answer {

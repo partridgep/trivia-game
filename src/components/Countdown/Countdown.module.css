@@ -1,0 +1,8 @@
+.timer {
+    color: white;
+    font-size: 40px;
+    font-family: 'Share', cursive;
+    position: absolute;
+    top: 3%;
+    right: 4rem;
+}
