@@ -8,8 +8,8 @@ module.exports = {
 async function getHighScores(req, res) {
     
     try {
-        const scores = await Score.find({}).limit(20).
-        sort({numQuestions: 1, seconds: 0});
+        const scores = await Score.find({}).
+        sort({numQuestions: -1, seconds: 0});
         res.status(201).json(scores); 
     } catch (error) {
         res.status(400).json({message: 'something went wrong'});

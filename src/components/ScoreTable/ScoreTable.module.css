@@ -1,0 +1,19 @@
+.ScoreTable {
+    font-family: 'Share';
+    text-transform: uppercase;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+.ScoreTable thead {
+    margin-bottom: 20px;
+}
+
+.ScoreTable th {
+    color: #E9F671;
+    padding: 0 5vw 20px 5vw;
+}
+
+.ScoreTable td {
+    color: #CFBDB8;
+}

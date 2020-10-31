@@ -12,6 +12,11 @@
     animation: neon .08s ease-in-out infinite alternate;
 }
 
+.LandingPage-btn {
+  color: rgb(28, 88, 112);
+  width: 185px;
+}
+
 @keyframes neon {
     from {
       text-shadow:

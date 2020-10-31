@@ -1,0 +1,24 @@
+.LeaderBoard {
+    background-color: black;
+    min-height: 100vh;
+    justify-content: flex-start;
+    font-family: 'Share';
+    text-transform: uppercase;
+}
+
+.LeaderBoard-title {
+    color: #88C7B4;
+    margin-top: 0;
+}
+
+.LeaderBoard-back {
+    color: white;
+    font-size: 20px;
+    align-self: flex-start;
+    text-decoration: none;
+    margin: 3% 0 0 3%;
+}
+
+.LeaderBoard-back:hover {
+    color: purple;
+}

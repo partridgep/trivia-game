@@ -6,7 +6,8 @@ function LandingPage(props) {
     return (
         <div className="LandingPage flex-ctr">
             <h1 className="LandingPage-title">Tandem Trivia</h1>
-            <button className="btn"><Link to="/play">New Game</Link></button>
+            <Link className="btn LandingPage-btn" to="/play">New Game</Link>
+            <Link className="btn LandingPage-btn" to="/leaderboard">Leaderboard</Link>
         </div>
     )
 }

@@ -176,7 +176,7 @@ class GamePage extends Component {
                 }
                 {this.state.addingScore && 
                     <NamePrompt 
-                        numQuestions={this.state.numQuestions}
+                        count={this.state.count}
                         gameTimer={this.state.gameTimer}
                     />
                 }
