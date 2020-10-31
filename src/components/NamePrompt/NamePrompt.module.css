@@ -1,0 +1,12 @@
+.NamePrompt {
+    background: linear-gradient(rgb(75, 116, 155), rgb(0, 0, 0));
+    padding: 25px 50px;
+    border-radius: 9px;
+}
+
+.NamePrompt input {
+    font-family: 'Share';
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 25px;
+}

@@ -1,4 +1,4 @@
-import React, { useState, UseEffect, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import './LeaderBoard.css';
 
@@ -9,10 +9,12 @@ function LeaderBoard(props) {
 
     const [state, setState] = useState({scores: []});
 
-    useEffect( async () => {
-        const scores = await highScoresService.getScores();
-        console.log(scores);
-        setState({ scores });
+    useEffect(() => {
+        async function fetchData() {
+            const scores = await highScoresService.getScores();
+            setState({ scores });
+        }
+        fetchData();
     }, []);
 
     return (

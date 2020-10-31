@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import styles from './NamePrompt.module.css';
 
 import highScoresService from '../../utils/highScoresService';
 
@@ -36,17 +37,19 @@ class NamePrompt extends Component {
         }
 
         return (
-            <div className='WonLostPopUp flex-ctr'>
-                <h1 className='GamePage-stat'>Enter Your Name:</h1>
-                <form className='flex-ctr' onSubmit={(e) => this.handleAddScore(e)}>
-                    <input
-                            type="text"
-                            value={this.state.name} 
-                            autoComplete="off"
-                            onChange={(e) => this.handleChange(e)}
-                        />
-                    <button className='btn'>Submit</button>
-                </form>
+            <div className='WonLostPopUp flex-ctr' >
+                <div className={styles.NamePrompt}>
+                    <h1 className='GamePage-stat'>Enter Your Name:</h1>
+                    <form className='flex-ctr' onSubmit={(e) => this.handleAddScore(e)}>
+                        <input
+                                type="text"
+                                value={this.state.name} 
+                                autoComplete="off"
+                                onChange={(e) => this.handleChange(e)}
+                            />
+                        <button className='btn'>Submit</button>
+                    </form>
+                </div>
             </div>
         )
         

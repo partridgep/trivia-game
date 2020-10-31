@@ -11,8 +11,8 @@ const ScoreTable = ({ scores }) => (
             </tr>
         </thead>
         <tbody>
-            {scores.map((score) => 
-                <tr>
+            {scores.map((score, idx) => 
+                <tr key={idx}>
                     <td>{score.name}</td>
                     <td>{score.numQuestions}</td>
                     <td>{score.seconds}</td>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './GamePage.css';
 
 import Question from '../../components/Question/Question';
@@ -142,6 +142,7 @@ class GamePage extends Component {
     render() {
         return (
            <div className='GamePage flex-ctr'>
+                    <Link to='/' className="GamePage-back">Back</Link>
                     <Countdown
                         questionTimer={this.state.questionTimer}
                     />
@@ -166,7 +167,10 @@ class GamePage extends Component {
                         Next Question
                     </button>}
                {this.state.lost && 
-                    <LostPopUp resetGame={this.resetGame} />
+                    <LostPopUp 
+                        resetGame={this.resetGame} 
+                        handleAskToAddScore={this.handleAskToAddScore}
+                    />
                 }
                {this.state.won && !this.state.addingScore &&
                     <WonPopUp 
