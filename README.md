@@ -74,7 +74,8 @@ Within the file structure, you will find `src`, which contains `App.js`. That fi
 
 ### GamePage
 
-`GamePage` is where the fun begins.\As a React class component, it contains both state and methods in order for the game to function. Initially, `state` does not contain much, but get expanded upon on game initialization.
+`GamePage` is where the fun begins.\
+As a React class component, it contains both state and methods in order for the game to function. Initially, `state` does not contain much, but get expanded upon on game initialization.
 
 It imports all trivia data from the JSON files from within the `assets` file.
 
@@ -94,9 +95,14 @@ Upon loading the page, the `componentDidMount` method does two things: first, it
 * `isGameTiming`: boolean, whetheer or not the game timer is running. Set to `true` initially.
 * `correctlyAnswered`: integer, number of correctly answered questions during the game. Set to `0` initially.
 
-After setting these values in state, `resetGame` then calls the `GetNewQuestion` method.\This method will get a random question from the `triviaData` array (as long as it doesn't already exist within the `askedQuestions` array), grab its data, and set it to state as `triviaQandA`. It randomly orders the answers, jumbling the correct answer among the incorrect answers, and sets that array to state as `randomlyOrderedAnswers`.\It adds that question to the `askedQuestions` array, increments the question `count` by 1, and finally, resets the `QuestionTimer` to 30 and the `isQuestionTimer` to `true`.
+After setting these values in state, `resetGame` then calls the `GetNewQuestion` method.\
+This method will get a random question from the `triviaData` array (as long as it doesn't already exist within the `askedQuestions` array), grab its data, and set it to state as `triviaQandA`. It randomly orders the answers, jumbling the correct answer among the incorrect answers, and sets that array to state as `randomlyOrderedAnswers`.\
+It adds that question to the `askedQuestions` array, increments the question `count` by 1, and finally, resets the `QuestionTimer` to 30 and the `isQuestionTimer` to `true`.
 
-When a user selects an user, the `checkIfCorrect` method is called. It compares the answer selected by the user to the data in `currentQandA`. \If the answer matches `currentQandA.correct`, it sets its internal `correct` boolean to `true`, clearing the way to display the "Next Question" button. \In any case, the game will display the correct answer, as it keeps track of what question the user has chosen through `chosenAnswer` in state. \If it does not match the correct answer, it is highlighted in red, and the `lost` boolean is set to true.
+When a user selects an user, the `checkIfCorrect` method is called. It compares the answer selected by the user to the data in `currentQandA`. \
+If the answer matches `currentQandA.correct`, it sets its internal `correct` boolean to `true`, clearing the way to display the "Next Question" button. \
+In any case, the game will display the correct answer, as it keeps track of what question the user has chosen through `chosenAnswer` in state. \
+If it does not match the correct answer, it is highlighted in red, and the `lost` boolean is set to true.
 
 At the end of the game, whether the player has lost or won, they are able to play again, with a button calling on the `resetGame` method.
 
