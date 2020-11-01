@@ -1,7 +1,7 @@
 .GamePage {
     min-height: 100vh;
     justify-content: flex-start;
-    padding-top: 6%;
+    padding-top: 9%;
 }
 
 .GamePage-stat {
@@ -11,10 +11,11 @@
     color: rgba(222, 202, 228, 0.92);
 }
 
-.GamePage-lost, .GamePage-lost {
+.GamePage-lost, .GamePage-won {
     text-transform: uppercase;
     font-size: 40px;
     text-shadow: 2px 4px 20px rgb(71, 71, 71);
+    margin-bottom: 0;
 }
 
 .GamePage-lost {
@@ -23,6 +24,11 @@
 
 .GamePage-won {
     color: rgba(0, 255, 13, 0.92);
+}
+
+.GamePage-finalResult {
+    font-size: 22px;
+    margin-bottom: 1rem;
 }
 
 .GamePage-proceed {

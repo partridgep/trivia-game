@@ -1,12 +1,14 @@
 # Trivia Game
 
-A fun React trivia game! 21 questions total (10 questions in each round, plus a bonus question.)
+A fun React trivia game! 10 questions per round, get one wrong and you lose. Compete with other players by submitting your score on an online leaderboard.
 
 ## Getting Started
 
 To view the deployed project, visit [this link](https://trivia-tandem.herokuapp.com/) (please allow 20-30 seconds for Heroku to load.)
 
-Alernatively, if you wish to run this app locally, open a terminal, navigate to the project's folder and run:
+Alernatively, if you wish to run this app locally, open a terminal, navigate to the project's folder and download the app's dependencies by running `npm i`.
+
+You may then run:
 
 ### `npm start`
 
@@ -17,11 +19,11 @@ You will also not be able to connect to the leaderboard database, as that inform
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
+Launches the test runner in the interactive watch mode.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
+Builds the app for production to the `build` folder.
 
 ## List of Technologies
 
@@ -42,17 +44,17 @@ Builds the app for production to the `build` folder.\
 
 *Game Page:*
 
-![Game Page](https://i.imgur.com/dUKcaiU.jpg)
+![Game Page](https://i.imgur.com/0bxet1O.jpg)
 
 
 *After answering (incorrectly):*
 
-![Incorrect Answer](https://i.imgur.com/dXS3t62.png)
+![Incorrect Answer](https://i.imgur.com/7wQCPS1.png)
 
 
 *Leaderboard:*
 
-![Leaderboard](https://i.imgur.com/nf0hUOU.png)
+![Leaderboard](https://i.imgur.com/yI1FJh4.png)
 
 ## Features
 

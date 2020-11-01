@@ -21,7 +21,10 @@ function LeaderBoard(props) {
         <div className="LeaderBoard flex-ctr">
             <Link to='/' className="LeaderBoard-back">Home</Link>
             <h1 className="LeaderBoard-title">Leaderboard</h1>
-            <ScoreTable scores={state.scores} />
+            <ScoreTable 
+                scores={state.scores} 
+                formatTime={props.formatTime}
+            />
         </div>
     )
 }

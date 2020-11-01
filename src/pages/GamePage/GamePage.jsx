@@ -16,13 +16,13 @@ class GamePage extends Component {
     // state of game 
     state = { 
         triviaQandA: {},
-        addingScore: false
+        addingScore: false,
      }
 
     // upon load, initialize game in state
     async componentDidMount() {
         await this.resetGame();
-        console.log(triviaData);
+        // start both question and game timers
         this.timerId = setInterval(this.handleTick, 1000);
     }
 
@@ -47,6 +47,7 @@ class GamePage extends Component {
         let triviaQandA = triviaData[triviaIdx];
         // update the question in state
         this.setState({triviaQandA});
+        // randomly order the question's answers
         let randomlyOrderedAnswers = this.randomlyOrderAnswers(triviaQandA.incorrect, triviaQandA.correct);
         this.setState({randomlyOrderedAnswers});
         // mark this question as already asked so it will not get repeated
@@ -69,8 +70,10 @@ class GamePage extends Component {
         if (answer === currentQandA.correct) correct = true;
         // if correct boolean is set to true
         if (correct === true) {
-            // tell player they've won if they answered all questions
-            if (this.state.count === 21) {
+            let correctlyAnswered = this.state.correctlyAnswered + 1;
+            this.setState({ correctlyAnswered });
+            // tell player they've won if they answered all 10 questions
+            if (this.state.count === 10) {
                 this.setState({won: true, isGameTiming: false});
             }
             // otherwise show "Next Question" button
@@ -93,6 +96,8 @@ class GamePage extends Component {
             if (this.state.isGameTiming) this.handleUpdateGameTimer();
             if (this.state.isQuestionTiming) this.handleUpdateQuestionTimer();
         }
+        // if question timer is down to 0,
+        // stop clock on both timers
         else this.setState({isGameTiming: false, isQuestionTiming: false});
       }
 
@@ -100,16 +105,19 @@ class GamePage extends Component {
     handleUpdateGameTimer = () => {
         // forfeit game if question timer is down to 0
         if (this.state.questionTimer === 1) {
-            this.setState({ gameTimer: ++this.state.gameTimer, lost: true, disableAnswerBtns: true });
+            let gameTimer = this.state.gameTimer + 1;
+            this.setState({ gameTimer, lost: true, disableAnswerBtns: true });
         }
         else {
-            this.setState({ gameTimer: ++this.state.gameTimer });
+            let gameTimer = this.state.gameTimer + 1;
+            this.setState({ gameTimer });
         }
       }
 
-    // increment question timer
+    // decrease question timer
     handleUpdateQuestionTimer = () => {
-        this.setState({ questionTimer: --this.state.questionTimer });
+        let questionTimer = this.state.questionTimer - 1;
+        this.setState({ questionTimer });
     }
 
     handleAskToAddScore = () => {
@@ -127,7 +135,8 @@ class GamePage extends Component {
             questionTimer: 30,
             isQuestionTiming: true,
             gameTimer: 0,
-            isGameTiming: true
+            isGameTiming: true,
+            correctlyAnswered: 0
         });
         this.getNewQuestion();
     }
@@ -147,7 +156,6 @@ class GamePage extends Component {
                     <Countdown
                         questionTimer={this.state.questionTimer}
                     />
-                   <h1 className='GamePage-stat'>{this.state.count < 11 ? 'Round 1' : this.state.count > 20 ? 'Bonus Question!' : 'Round 2'}</h1>
                    <h1 className='GamePage-stat'>Question {this.state.count}</h1>
                    <Question 
                        question={this.state.triviaQandA.question}
@@ -171,13 +179,18 @@ class GamePage extends Component {
                     <LostPopUp 
                         resetGame={this.resetGame} 
                         handleAskToAddScore={this.handleAskToAddScore}
-                        count={this.state.count}
+                        correctlyAnswered={this.state.correctlyAnswered}
+                        gameTimer={this.state.gameTimer}
+                        formatTime={this.props.formatTime}
                     />
                 }
                {this.state.won && !this.state.addingScore &&
                     <WonPopUp 
                         resetGame={this.resetGame}
                         handleAskToAddScore={this.handleAskToAddScore}
+                        correctlyAnswered={this.state.correctlyAnswered}
+                        gameTimer={this.state.gameTimer}
+                        formatTime={this.props.formatTime}
                     />
                 }
                 {this.state.addingScore && 
