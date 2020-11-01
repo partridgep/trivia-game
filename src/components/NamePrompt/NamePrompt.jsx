@@ -20,9 +20,15 @@ class NamePrompt extends Component {
     handleAddScore = async (e) => {
         // prevent submit from refreshing page
         e.preventDefault();
+        // get default value for final count
+        let finalCount;
+        if (this.props.lost) {
+            finalCount = this.props.count - 1;
+        }
+        else finalCount = this.props.count;
         // add # of questions answered, name, and total seconds to database
         await highScoresService.addScore({
-            numQuestions: this.props.count, 
+            numQuestions: finalCount, 
             name: this.state.name, 
             seconds: this.props.gameTimer
         });

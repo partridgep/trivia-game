@@ -9,7 +9,7 @@ function LeaderBoard(props) {
 
     const [state, setState] = useState({scores: []});
 
-    useEffect(() => {
+    useEffect( () => {
         async function fetchData() {
             const scores = await highScoresService.getScores();
             setState({ scores });

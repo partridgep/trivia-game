@@ -170,6 +170,7 @@ class GamePage extends Component {
                     <LostPopUp 
                         resetGame={this.resetGame} 
                         handleAskToAddScore={this.handleAskToAddScore}
+                        count={this.state.count}
                     />
                 }
                {this.state.won && !this.state.addingScore &&
@@ -182,6 +183,7 @@ class GamePage extends Component {
                     <NamePrompt 
                         count={this.state.count}
                         gameTimer={this.state.gameTimer}
+                        lost={this.state.lost}
                     />
                 }
            </div>

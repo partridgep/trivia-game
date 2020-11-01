@@ -1,10 +1,12 @@
 import React from 'react';
 
-const LostPopUp = ({ resetGame, handleAskToAddScore }) => (
+const LostPopUp = ({ resetGame, handleAskToAddScore, count }) => (
     <div className='WonLostPopUp flex-ctr'>
         <h1 className='GamePage-stat GamePage-lost'>You Lost!</h1>
         <div className='flex-ctr'>
-            <button className='btn' onClick={() => handleAskToAddScore()}>Enter Leaderboard</button>
+            {count > 1 &&
+                <button className='btn' onClick={() => handleAskToAddScore()}>Enter Leaderboard</button>
+            }
             <button className='btn' onClick={() => resetGame()}>Try Again</button>
         </div>
     </div>
