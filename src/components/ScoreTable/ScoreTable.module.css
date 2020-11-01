@@ -17,3 +17,17 @@
 .ScoreTable td {
     color: #CFBDB8;
 }
+
+
+@media (max-width: 530px) {
+
+    .ScoreTable {
+        font-size: 20px;
+    }
+
+    .ScoreTable td {
+        padding-bottom: .4rem;
+    }
+
+
+}

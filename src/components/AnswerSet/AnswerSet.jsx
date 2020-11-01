@@ -5,7 +5,7 @@ const AnswerSet = ({ currentQandA, checkIfCorrect, randomlyOrderedAnswers, disab
     <div className={styles.AnswerSet}>
         {randomlyOrderedAnswers && randomlyOrderedAnswers.map((answer, idx) => 
             <button 
-                className={['btn', `${styles.answer}`].join(' ')} 
+                className={['btn', 'flex-ctr', `${styles.answer}`].join(' ')} 
                 style={{
                     background: (disableAnswerBtns === true && answer === currentQandA.correct && questionTimer > 0) ? 
                     "rgb(55, 193, 69)"

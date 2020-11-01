@@ -14,4 +14,5 @@ function addScore(data) {
     }).then(response => response.json()); 
 };
 
+// eslint-disable-next-line
 export default { getScores, addScore }

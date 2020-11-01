@@ -6,3 +6,13 @@
     top: 3%;
     right: 4rem;
 }
+
+@media (max-width: 700px) {
+
+    .timer {
+        font-size: 32px;
+        top: 1%;
+        right: 2rem;
+    }
+
+}
