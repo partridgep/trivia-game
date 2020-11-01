@@ -7,6 +7,7 @@ import AnswerSet from '../../components/AnswerSet/AnswerSet';
 import Countdown from '../../components/Countdown/Countdown';
 
 import triviaData from '../../assets/Apprentice_TandemFor400_Data.json';
+
 import WonPopUp from '../../components/WonPopUp/WonPopUp';
 import LostPopUp from '../../components/LostPopUp/LostPopUp';
 import NamePrompt from '../../components/NamePrompt/NamePrompt';
@@ -29,8 +30,25 @@ class GamePage extends Component {
     // clear the timer at end of component lifecycle
     componentWillUnmount() {
         clearInterval(this.timerId);
-      }
+    }
 
+    resetGame = async () => {
+        await this.setState({
+            lost: false,
+            won: false,
+            triviaQandA: {},
+            askedQuestions: [],
+            count: 0,
+            showNexButton: false,
+            questionTimer: 30,
+            isQuestionTiming: true,
+            gameTimer: 0,
+            isGameTiming: true,
+            correctlyAnswered: 0
+        });
+        this.getNewQuestion();
+    }
+    
     // randomly get idx for trivia question
     getTriviaIdx = () => {
         return Math.floor(Math.random()*(triviaData.length));
@@ -122,23 +140,6 @@ class GamePage extends Component {
 
     handleAskToAddScore = () => {
         this.setState({ addingScore: true });
-    }
-
-    resetGame = async () => {
-        await this.setState({
-            lost: false,
-            won: false,
-            triviaQandA: {},
-            askedQuestions: [],
-            count: 0,
-            showNexButton: false,
-            questionTimer: 30,
-            isQuestionTiming: true,
-            gameTimer: 0,
-            isGameTiming: true,
-            correctlyAnswered: 0
-        });
-        this.getNewQuestion();
     }
 
     randomlyOrderAnswers(incorrect, correct) {
