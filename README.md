@@ -62,7 +62,7 @@ You will also not be able to connect to the leaderboard database, as that inform
 
 ## Functioning
 
-Within the file structure, you will find `src`, which contains `App.js`. That file routes the three different pages, which have their dedicated folder in the `pages` folder:
+Within the file structure, you will find the `src` folder, which contains `App.js`. That file routes the three different pages, which have their dedicated folders in the `pages` folder:
 
 1. LandingPage
 2. GamePage
@@ -75,13 +75,13 @@ Within the file structure, you will find `src`, which contains `App.js`. That fi
 ### GamePage
 
 `GamePage` is where the fun begins.\
-As a React class component, it contains both state and methods in order for the game to function. Initially, `state` does not contain much, but get expanded upon on game initialization.
+As a React class component, it contains both state and methods in order for the game to function. Initially, `state` does not contain much, but gets expanded upon on game initialization.
 
 It imports all trivia data from the JSON files from within the `assets` file.
 
 Upon loading the page, the `componentDidMount` method does two things: first, it initializes the game via `resetGame`, and two, it sets an interval every second to call upon the timer methods.
 
-`resetGame` initializes many properties in `state` for the game to function, such as the following:
+`resetGame` initializes the following properties in `state` for the game to function:
 
 * `lost`: boolean, whether the player has lost the game or not. Set to `false` initially.
 * `won`: boolean, conversely whether the player has won the game or not. Set to `false` initially.
@@ -92,7 +92,7 @@ Upon loading the page, the `componentDidMount` method does two things: first, it
 * `questionTimer`: integer, number of seconds remaining for the player to answer the question. Set to `30` initially.
 * `isQuestionTiming`: boolean, whether or not the question timer is running. Set to `true` initially.
 * `gameTimer`: integer, number of seconds elapsed since the player has started the game. Set to `0` initially.
-* `isGameTiming`: boolean, whetheer or not the game timer is running. Set to `true` initially.
+* `isGameTiming`: boolean, whether or not the game timer is running. Set to `true` initially.
 * `correctlyAnswered`: integer, number of correctly answered questions during the game. Set to `0` initially.
 
 After setting these values in state, `resetGame` then calls the `GetNewQuestion` method.\
@@ -116,9 +116,9 @@ The `scoreSchema` found in the `score.js` file in the `models` folder details ho
 
 The routes in the `routes` folder lead to corresponding controller functions for both `GET` and `POST`.
 
-Those functions, found in the `controllers` function will fetch the scores from the database, or post a new score (after the player submits the score on the `GamePage`.)
+Those functions, found in the `controllers` function, will fetch the scores from the database, or post a new score (after the player submits the score on the `GamePage`.)
 
-The `Leaderboard` page simply displays those scores obtained from the database. Thosse scores are organized first by descending order of answered questions (highest is first), then by overall game time.
+The `Leaderboard` page simply displays those scores obtained from the database. Those scores are organized first by descending order of answered questions (highest is first), then by overall game time.
 
 
 ## Mobile Optimization
