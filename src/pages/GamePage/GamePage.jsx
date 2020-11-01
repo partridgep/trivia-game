@@ -22,6 +22,7 @@ class GamePage extends Component {
     // upon load, initialize game in state
     async componentDidMount() {
         await this.resetGame();
+        console.log(triviaData);
         this.timerId = setInterval(this.handleTick, 1000);
     }
 
@@ -32,7 +33,7 @@ class GamePage extends Component {
 
     // randomly get idx for trivia question
     getTriviaIdx = () => {
-        return Math.floor(Math.random()*(triviaData.length-1)+1);
+        return Math.floor(Math.random()*(triviaData.length));
     }
 
     getNewQuestion = () => {
@@ -69,7 +70,7 @@ class GamePage extends Component {
         // if correct boolean is set to true
         if (correct === true) {
             // tell player they've won if they answered all questions
-            if (this.state.count === 20) {
+            if (this.state.count === 21) {
                 this.setState({won: true, isGameTiming: false});
             }
             // otherwise show "Next Question" button
@@ -146,7 +147,7 @@ class GamePage extends Component {
                     <Countdown
                         questionTimer={this.state.questionTimer}
                     />
-                   <h1 className='GamePage-stat'>Round {this.state.count < 11 ? 1 : 2}</h1>
+                   <h1 className='GamePage-stat'>{this.state.count < 11 ? 'Round 1' : this.state.count > 20 ? 'Bonus Question!' : 'Round 2'}</h1>
                    <h1 className='GamePage-stat'>Question {this.state.count}</h1>
                    <Question 
                        question={this.state.triviaQandA.question}

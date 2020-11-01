@@ -1,17 +1,17 @@
 # Trivia Game
 
-A fun React trivia game! 20 questions total, 2 rounds of 10 questions each.
+A fun React trivia game! 21 questions total (10 questions in each round, plus a bonus question.)
 
 ## Getting Started
 
 To view the deployed project, visit [this link](https://trivia-tandem.herokuapp.com/) (please allow 20-30 seconds for Heroku to load.)
 
-Alernatively, if you wish to run this app locally, open a terminal and navigate to the project's folder and run:
+Alernatively, if you wish to run this app locally, open a terminal, navigate to the project's folder and run:
 
 ### `npm start`
 
 This will run the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\You may need to run a build for everything to work correctly (see below.) Also, you will not be able to connect to the leaderboard database, as that information is always stored in a local `.env` file, never on GitHub. 
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\You may need to run a build for everything to work correctly (see below.)\Also, you will not be able to connect to the leaderboard database, as that information is always stored in a local `.env` file, never on GitHub. If you do connect to your own database, run `nodemon server` in another terminal window at the same time to connect.
 
 ### `npm test`
 
