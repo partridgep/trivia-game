@@ -11,7 +11,9 @@ Alernatively, if you wish to run this app locally, open a terminal, navigate to 
 ### `npm start`
 
 This will run the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\You may need to run a build for everything to work correctly (see below.)\Also, you will not be able to connect to the leaderboard database, as that information is always stored in a local `.env` file, never on GitHub. If you do connect to your own database, run `nodemon server` in another terminal window at the same time to connect.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+\You may need to run a build for everything to work correctly (see below.)
+\You will also not be able to connect to the leaderboard database, as that information is always stored in a local `.env` file, never on GitHub. If you do connect to your own database, run `nodemon server` in another terminal window at the same time to connect.
 
 ### `npm test`
 
@@ -63,6 +65,10 @@ Builds the app for production to the `build` folder.\
 * Timer for player's overall time 
 * Score leaderboard in online database
 * Leaderboard is ordered by # of questions answered, then overall time
+
+## Functioning
+
+Section coming soon...
 
 ## Upcoming Features
 
