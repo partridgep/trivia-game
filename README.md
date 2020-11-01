@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Trivia Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fun React trivia game! 20 questions total, 2 rounds of 10 questions each.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+To view the deployed project, visit [this link](https://trivia-tandem.herokuapp.com/) (please allow 20-30 seconds for Heroku to load.)
+
+Alernatively, if you wish to run this app locally, open a terminal and navigate to the project's folder and run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This will run the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\You may need to run a build for everything to work correctly (see below.) Also, you will not be able to connect to the leaderboard database, as that information is always stored in a local `.env` file, never on GitHub. 
 
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## List of Technologies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* React
+* HTML5
+* CSS3
+* JavaScript
+* Express
+* Mongoose/MongoDB
+* JSON
 
-### `npm run eject`
+## Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+*Landing Page:*
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Landing Page](https://i.imgur.com/VHOyrGV.jpg)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+*Game Page:*
 
-## Learn More
+![Game Page](https://i.imgur.com/dUKcaiU.jpg)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+*After answering (incorrectly):*
 
-### Code Splitting
+![Incorrect Answer](https://i.imgur.com/dXS3t62.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+*Leaderboard:*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Leaderboard](https://i.imgur.com/nf0hUOU.png)
 
-### Making a Progressive Web App
+## Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* Randomization of questions
+* Randomization of answer order
+* No question repeat in a game
+* Only 1 possible answer selection
+* Correct answer revealed after player selects an answer
+* 30-second countdown timer for each question
+* Timer for player's overall time 
+* Score leaderboard in online database
+* Leaderboard is ordered by # of questions answered, then overall time
 
-### Advanced Configuration
+## Upcoming Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* Mobile Optimization
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
