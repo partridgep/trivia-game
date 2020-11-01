@@ -108,6 +108,18 @@ At the end of the game, whether the player has lost or won, they are able to pla
 
 If they have answered at least one question correctly, they will be able to add their score to the online leaderboard, with each score containing the user's name (obtained by user input), their final tally of correctly answered questions, and their overall time.
 
+## Leaderboard
+
+As its name implies, this page displays all scores saved to the leaderboard. All scores are saved in a MongoDB online database using an MVC code organization. 
+
+The `scoreSchema` found in the `score.js` file in the `models` folder details how the score model is implemented: a `name` (string), `numQuestions` (number), and `seconds` (number.)
+
+The routes in the `routes` folder lead to corresponding controller functions for both `GET` and `POST`.
+
+Those functions, found in the `controllers` function will fetch the scores from the database, or post a new score (after the player submits the score on the `GamePage`.)
+
+The `Leaderboard` page simply displays those scores obtained from the database. Thosse scores are organized first by descending order of answered questions (highest is first), then by overall game time.
+
 
 ## Mobile Optimization
 
