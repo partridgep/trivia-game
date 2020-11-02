@@ -36,7 +36,7 @@ You will also not be able to connect to the leaderboard database, as that inform
 
 *Game Page:*
 
-![Game Page](https://i.imgur.com/0bxet1O.jpg)
+![Game Page](https://i.imgur.com/i8Alac9.jpg)
 
 
 *After answering (incorrectly):*
