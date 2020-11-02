@@ -125,6 +125,10 @@ Media Queries in the CSS files allow for mobile optimization:
 
 ![Mobile Optimization](https://i.imgur.com/9UXh6jv.png)
 
+## Future Improvements
 
+* Include testing units
+* Improve background styling on mobile
+* Multiplayer one-on-one challenges using sockets
 
 
